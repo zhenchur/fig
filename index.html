@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cyanotype Studio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="control-panel">
+        <div class="brand">
+          <p class="eyebrow">client-side print lab</p>
+          <h1>Cyanotype Studio</h1>
+        </div>
+
+        <section class="upload-zone" id="dropZone">
+          <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp" />
+          <button class="primary-action" id="uploadButton" type="button">Загрузить изображение</button>
+          <p>JPG, PNG или WEBP. Можно перетащить файл или вставить изображение через Command+V.</p>
+        </section>
+
+        <section class="presets" aria-label="Presets">
+          <button class="preset-button is-active" type="button" data-preset="classic">Classic Cyanotype</button>
+          <button class="preset-button" type="button" data-preset="contrast">High Contrast</button>
+          <button class="preset-button" type="button" data-preset="fabric">Fabric Print</button>
+        </section>
+
+        <section class="controls" aria-label="Processing controls">
+          <label class="slider-row">
+            <span>Contrast</span>
+            <output id="contrastValue">1.45</output>
+            <input id="contrast" type="range" min="0.7" max="2.8" step="0.01" value="1.45" />
+          </label>
+
+          <label class="slider-row">
+            <span>Exposure</span>
+            <output id="exposureValue">0.08</output>
+            <input id="exposure" type="range" min="-0.45" max="0.45" step="0.01" value="0.08" />
+          </label>
+
+          <label class="slider-row">
+            <span>Blue intensity</span>
+            <output id="blueValue">1.05</output>
+            <input id="blueIntensity" type="range" min="0.5" max="1.7" step="0.01" value="1.05" />
+          </label>
+
+          <label class="slider-row">
+            <span>Paper texture</span>
+            <output id="textureValue">0.35</output>
+            <input id="textureStrength" type="range" min="0" max="1" step="0.01" value="0.35" />
+          </label>
+
+          <label class="slider-row">
+            <span>Artifacts</span>
+            <output id="artifactValue">0.28</output>
+            <input id="artifactStrength" type="range" min="0" max="1" step="0.01" value="0.28" />
+          </label>
+        </section>
+
+        <section class="actions" aria-label="Export controls">
+          <div class="toggle-row">
+            <label>
+              <input id="beforeAfterToggle" type="checkbox" />
+              <span>Показать оригинал</span>
+            </label>
+          </div>
+
+          <label class="select-row">
+            <span>Export scale</span>
+            <select id="exportScale">
+              <option value="1">1x PNG</option>
+              <option value="2">2x PNG</option>
+              <option value="4">4x PNG</option>
+            </select>
+          </label>
+
+          <button class="secondary-action" id="randomSeedButton" type="button">Новый отпечаток</button>
+          <button class="primary-action" id="exportButton" type="button" disabled>Export PNG</button>
+        </section>
+      </aside>
+
+      <section class="preview-panel">
+        <div class="canvas-wrap" id="canvasWrap">
+          <canvas id="previewCanvas"></canvas>
+          <div class="empty-state" id="emptyState">
+            <strong>Перетащите изображение сюда</strong>
+            <span>Предпросмотр цианотипии появится сразу после загрузки.</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
